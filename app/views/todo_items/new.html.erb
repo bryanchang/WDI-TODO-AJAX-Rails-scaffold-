@@ -1,0 +1,52 @@
+<h1>Todo list using jQuery</h1>
+
+<%= render 'form' %>
+
+<h2>TODO</h2>
+
+<table id="todo_list">
+  <tr>
+    <th>Name</th>
+    <th>Completed</th>
+    <th>Deleted</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @todo_items.each do |todo_item| %>
+  <tr>
+    <td><%= todo_item.name %></td>
+    <td><%= todo_item.completed %></td>
+    <td><%= todo_item.deleted %></td>
+<!--     <td><%= link_to 'Edit', edit_todo_item_path(todo_item) %></td>  -->
+    <td>
+      <%= image_tag("trash.svg", :class => "trash") %>
+      <img src="/assets/trash.svg" class="trash">
+      <%= link_to 'Destroy', todo_item, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </td>
+  </tr>
+<% end %>
+</table>
+
+<h2>Completed</h2>
+<table id="completed_list">
+  <tr>
+    <th>Name</th>
+    <th>Completed</th>
+    <th>Deleted</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @completed_items.each do |completed_item| %>
+  <tr>
+    <td><%= completed_item.name %></td>
+    <td><%= completed_item.completed %></td>
+    <td><%= completed_item.deleted %></td>
+<!--     <td><%= link_to 'Edit', edit_todo_item_path(completed_item) %></td> -->
+     <td><%= link_to 'Destroy', completed_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Back', todo_items_path %>
